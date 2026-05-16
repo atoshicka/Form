@@ -58,3 +58,23 @@
 .btn-log:hover {
     color: var(--accent-hover);
 }
+
+@media (max-width: 768px) {
+    .page-wrapper-reg {
+        padding: 40px 24px;
+        align-items: center;
+    }
+
+    .main-container-reg {
+        width: 100%;
+    }
+
+    .form-title-reg {
+        font-size: 28px;
+        margin-bottom: 24px;
+    }
+
+    .card {
+        padding: 32px 24px;
+    }
+}
