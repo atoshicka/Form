@@ -2,8 +2,9 @@ import { LoginForm } from "../widgets/FormLogin/LoginForm";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { RegisterForm } from "../widgets/FormRegister/RegisterForm";
 import { WelcomeBlock } from "../widgets/Home/WelcomeBlock";
-import './styles/global.css';
 import { ThemeToggle } from "../components/ThemeToggle/ThemeToggle";
+import { NotFound } from "../widgets/NotFound/NotFound";
+import './styles/global.css';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     const token = localStorage.getItem('token');
@@ -27,6 +28,7 @@ function App() {
                         <WelcomeBlock />
                     </ProtectedRoute>
                 } />
+                <Route path="*" element={<NotFound/>}/>
             </Routes>
         </>
     )

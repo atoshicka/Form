@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Input } from "../../components/input/Input";
 import { Link, useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 import './register-form-styles.css';
 
 export const RegisterForm = () => {
@@ -68,6 +69,7 @@ export const RegisterForm = () => {
         return;
       }
 
+      toast.success('you have successfully registered!');
       navigate('/');
 
     } catch {
