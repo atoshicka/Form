@@ -1,0 +1,23 @@
+.theme-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 5px solid var(--accent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dark-moon {
+    width: 70%;
+    height: auto;
+}
+
+.container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: end;
+}
