@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { RegisterForm } from "../widgets/FormRegister/RegisterForm";
 import { WelcomeBlock } from "../widgets/Home/WelcomeBlock";
 import './styles/global.css';
+import { ThemeToggle } from "../components/ThemeToggle/ThemeToggle";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     const token = localStorage.getItem('token');
@@ -16,15 +17,18 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
 function App() {
     return (
-        <Routes>
-            <Route path="/" element={<LoginForm />} />
-            <Route path="/register" element={<RegisterForm />} />
-            <Route path="/home" element={
-                <ProtectedRoute> 
-                  <WelcomeBlock /> 
-              </ProtectedRoute>
-            } />
-        </Routes>
+        <>
+            <ThemeToggle />
+            <Routes>
+                <Route path="/" element={<LoginForm />} />
+                <Route path="/register" element={<RegisterForm />} />
+                <Route path="/home" element={
+                    <ProtectedRoute>
+                        <WelcomeBlock />
+                    </ProtectedRoute>
+                } />
+            </Routes>
+        </>
     )
 }
 

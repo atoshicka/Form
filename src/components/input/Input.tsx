@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './input-styles.css';
-import openEye from '../../assets/openEye.png';
-import closedEye from '../../assets/closeEye.png';
+import { EyeOff, Eye } from 'lucide-react';
 
 interface InputProps {
     inputIdentificator: string;
@@ -46,12 +45,9 @@ export const Input = ({
                 className={`input-content ${errorMessage ? 'input-error' : ''}`}
             />
                 {isPassword && inputValue.length >= 1 && (
-                    <img
-                        src={showPassword ? openEye : closedEye}
-                        alt="toggle password"
-                        className={openEye ? 'open-eye' : 'close-eye'}
-                        onClick={() => setShowPassword(prev => !prev)}
-                    />
+                    <span className='eye-icon' onClick={() => setShowPassword(prev => !prev)}>
+                        {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+                    </span>
                 )}
             </div>
             {errorMessage && (

@@ -57,20 +57,16 @@
     font-family: 'Rubik', sans-serif;
 }
 
-.open-eye {
+.eye-icon {
     position: absolute;
     right: 12px;
-    width: 28px;
-    height: auto;
+    display: flex;
+    align-items: center;
     cursor: pointer;
-    transition: opacity 0.2s ease;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
 }
 
-.close-eye {
-    position: absolute;
-    right: 12px;
-    width: 28px;
-    height: auto;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
+.eye-icon:hover {
+    color: var(--text-primary);
 }

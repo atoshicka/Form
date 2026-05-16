@@ -1,9 +1,10 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #181818;
-    color: #F6E9E3;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    background-color: var(--page-bg);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 :root {
@@ -14,7 +15,20 @@ html, body {
     --text-secondary: #888888;
     --accent: #A969D7;
     --accent-hover: #843AC5;
-    --error-color: #BF0A00;
     --button: #843AC5;
     --button-hover: #7225B7;
+    --error-color: #BF0A00;
+}
+
+:root[data-theme='light'] {
+    --page-bg: #F6E9E3;
+    --input-bg: #EDDCD4;
+    --input-border: #DBC7BD;
+    --text-primary: #181818;
+    --text-secondary: #888888;
+    --accent: #7c3aed;
+    --accent-hover: #6d28d9;
+    --button: #843AC5;
+    --button-hover: #7225B7;
+    --error-color: #ef4444;
 }

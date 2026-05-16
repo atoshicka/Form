@@ -11,6 +11,7 @@ export const RegisterForm = () => {
   const [serverError, setServerError] = useState<string>('');
 
   const navigate = useNavigate();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserLoginValue(e.target.value);
@@ -24,7 +25,7 @@ export const RegisterForm = () => {
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserEmailValue(e.target.value);
-    if (e.target.value) setErrors(prev => ({ ...prev, email: '' }));
+    if (emailRegex.test(e.target.value)) setErrors(prev => ({ ...prev, email: '' }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,8 +33,16 @@ export const RegisterForm = () => {
 
     const newErrors = {
       login: userLoginValue ? '' : 'this field is required',
-      password: !userPasswordValue ? 'this field is required' : userPasswordValue.length < 6 ? 'at least 6 characters' : '',
-      email: userEmailValue ? '' : 'this field is required',
+      password: !userPasswordValue 
+        ? 'this field is required' 
+        : userPasswordValue.length < 6 
+        ? 'minimum 6 characters' 
+        : '',
+    email: !userEmailValue 
+        ? 'this field is required' 
+        : !emailRegex.test(userEmailValue)
+        ? 'incorrect email'
+        : '',
     };
 
     setErrors(newErrors);
@@ -95,7 +104,7 @@ export const RegisterForm = () => {
           <Input
             inputIdentificator="email"
             inputLabelText="email"
-            inputType="email"
+            inputType="text"
             inputValue={userEmailValue}
             onInputChange={handleEmailChange}
             errorMessage={errors.email}
