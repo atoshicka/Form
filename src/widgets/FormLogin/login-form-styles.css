@@ -80,8 +80,8 @@
     padding: 48px;
 }
 
-@media (max-width: 768px) {
-    
+@media (max-width: 860px) {
+
     .page-wrapper {
         padding: 40px 24px;
         align-items: center;
