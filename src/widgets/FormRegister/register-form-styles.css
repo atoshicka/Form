@@ -59,7 +59,7 @@
     color: var(--accent-hover);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
     .page-wrapper-reg {
         padding: 40px 24px;
         align-items: center;
