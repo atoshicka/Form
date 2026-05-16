@@ -1,6 +1,8 @@
 .wrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 24px;
   justify-content: center;
   padding: 64px 24px;
   font-family: 'Rubik', sans-serif;
@@ -27,4 +29,23 @@
   100% {
     background-position: 200% center;
   }
+}
+
+.logoutBtn {
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(120deg, #3c3489 0%, #afa9ec 50%, #3c3489 100%);
+  background-size: 200% auto;
+  color: #ffffff;
+  animation: shimmer 4s linear infinite;
+  transition: opacity 0.2s ease;
+  user-select: none;
+}
+
+.logoutBtn:hover {
+  opacity: 0.6;
 }
