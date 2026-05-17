@@ -3,6 +3,7 @@ import { Input } from "../../components/input/Input";
 import { Link, useNavigate } from "react-router-dom";
 import './login-form-styles.css';
 import { useAuth } from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 export const LoginForm = () => {  
   const [userPasswordValue, setUserPasswordValue] = useState<string>('');
@@ -51,6 +52,7 @@ export const LoginForm = () => {
       }
 
       login(data.token);
+      toast.success('successful login!');
       navigate('/home');
 
     } catch {
