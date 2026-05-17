@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import './WelcomeBlock.css';
+import { useAuth } from "../../hooks/useAuth";
 
 export const WelcomeBlock = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    logout();
     navigate('/');
   }
 

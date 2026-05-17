@@ -2,14 +2,15 @@ import { LoginForm } from "../widgets/FormLogin/LoginForm";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { RegisterForm } from "../widgets/FormRegister/RegisterForm";
 import { WelcomeBlock } from "../widgets/Home/WelcomeBlock";
-import { ThemeToggle } from "../components/ThemeToggle/ThemeToggle";
 import { NotFound } from "../widgets/NotFound/NotFound";
+import { Navbar } from "../components/NavBar/NavBar";
+import { useAuth } from "../hooks/useAuth";
 import './styles/global.css';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-    const token = localStorage.getItem('token');
+    const { isAuth } = useAuth();
     
-    if (!token) {
+    if (!isAuth) {
         return <Navigate to="/" replace />;
     }
 
@@ -19,7 +20,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 function App() {
     return (
         <>
-            <ThemeToggle />
+            <Navbar/>
             <Routes>
                 <Route path="/" element={<LoginForm />} />
                 <Route path="/register" element={<RegisterForm />} />

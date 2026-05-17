@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Input } from "../../components/input/Input";
 import { Link, useNavigate } from "react-router-dom";
 import './login-form-styles.css';
+import { useAuth } from "../../hooks/useAuth";
 
 export const LoginForm = () => {  
   const [userPasswordValue, setUserPasswordValue] = useState<string>('');
@@ -10,6 +11,7 @@ export const LoginForm = () => {
   const [serverError, setServerError] = useState<string>('');
 
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserLoginValue(e.target.value);
@@ -48,7 +50,7 @@ export const LoginForm = () => {
         return;
       }
 
-      localStorage.setItem('token', data.token);
+      login(data.token);
       navigate('/home');
 
     } catch {
