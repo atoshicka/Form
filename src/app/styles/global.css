@@ -19,6 +19,11 @@ html, body {
     --button: #843AC5;
     --button-hover: #7225B7;
     --error-color: #BF0A00;
+    --card-bg: rgba(84, 84, 84, 0.08);
+    --card-border: rgba(84, 84, 84, 0.08);
+    --nav-bar-bg: rgba(255, 255, 255, 0.06);
+    --nav-bar-bg-hover: rgba(255, 255, 255, 0.08);
+    --nav-bar-border: rgba(255, 255, 255, 0.1);
 }
 
 :root[data-theme='light'] {
@@ -33,4 +38,9 @@ html, body {
     --button: #843AC5;
     --button-hover: #7225B7;
     --error-color: #ef4444;
+    --card-bg: rgba(234, 222, 212, 0.7);
+    --card-border: rgba(84, 84, 84, 0.08);
+    --nav-bar-bg: rgba(239, 217, 202, 0.367);
+    --nav-bar-bg-hover: rgba(230, 215, 206, 0.6);
+    --nav-bar-border: rgba(74, 74, 74, 0.1);
 }
