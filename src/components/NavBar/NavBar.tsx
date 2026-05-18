@@ -26,7 +26,7 @@ export const Navbar = () => {
                             <Link to="/register" className="navbar-btn navbar-btn-accent">sign up</Link>
                         </>
                     ) : (
-                        <Link to="/profile" className="navbar-icon-btn">
+                        <Link to="/account" className={`navbar-icon-btn ${location.pathname === '/account' ? 'navbar-icon-active' : ''}`}>
                             <UserRound size={20} />
                         </Link>
                     )}
