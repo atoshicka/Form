@@ -5,6 +5,7 @@ import { WelcomeBlock } from "../widgets/Home/WelcomeBlock";
 import { NotFound } from "../widgets/NotFound/NotFound";
 import { Navbar } from "../components/NavBar/NavBar";
 import { useAuth } from "../hooks/useAuth";
+import { Account } from "../widgets/Account/Account";
 import './styles/global.css';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -29,6 +30,7 @@ function App() {
                         <WelcomeBlock />
                     </ProtectedRoute>
                 } />
+                <Route path="/account" element={<Account/>}/>
                 <Route path="*" element={<NotFound/>}/>
             </Routes>
         </>

@@ -33,11 +33,12 @@
 }
 
 .logoutBtn {
-  padding: 10px 24px;
-  font-size: 14px;
+  width: fit-content;
+  padding: 6px 16px;
+  font-size: 13px;
   font-family: "Rubik", sans-serif;
   font-weight: 500;
-  border-radius: 12px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
   background: linear-gradient(120deg, #3c3489 0%, #afa9ec 50%, #3c3489 100%);
