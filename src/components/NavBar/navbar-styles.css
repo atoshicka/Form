@@ -47,10 +47,10 @@
     color: var(--text-primary);
     text-decoration: none;
     transition: background 0.2s ease;
-}
 
-.navbar-icon-btn:hover {
-    background: var(--nav-bar-bg-hover);
+    &:hover {
+        background: var(--nav-bar-bg-hover);
+    }
 }
 
 .navbar-btn {
@@ -60,27 +60,27 @@
     text-decoration: none;
     color: var(--text-secondary);
     transition: color 0.2s ease;
-}
 
-.navbar-btn:hover {
-    color: var(--text-primary);
+    &:hover {
+        color: var(--text-primary);
+    }
 }
 
 .navbar-btn-accent {
     background: var(--accent);
     color: var(--text-primary);
-}
 
-.navbar-btn-accent:hover {
-    background: var(--accent-hover);
-    color: var(--text-primary);
+    &:hover {
+        background: var(--accent-hover);
+        color: var(--text-primary);
+    }
 }
 
 .navbar-icon-active {
     color: var(--accent);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 800px) {
     .navbar {
         padding: 12px 1px;
     }

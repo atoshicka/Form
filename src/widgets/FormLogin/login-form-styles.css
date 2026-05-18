@@ -44,10 +44,10 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
     margin-top: 8px;
-}
 
-.btn-login:hover {
-    background-color: var(--button-hover);
+    &:hover {
+        background-color: var(--button-hover);
+    }
 }
 
 .form-footer {
@@ -59,11 +59,13 @@
 .btn-register {
     color: var(--accent);
     text-decoration: none;
+
+    &:hover {
+        color: var(--accent-hover);
+    }
 }
 
-.btn-register:hover {
-    color: var(--accent-hover);
-}
+
 
 .server-error {
     color: var(--error-color);
@@ -80,7 +82,7 @@
     padding: 48px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .page-wrapper {
         padding: 40px 24px;
         align-items: center;

@@ -10,6 +10,7 @@ export const LoginForm = () => {
   const [userLoginValue, setUserLoginValue] = useState<string>('');
   const [errors, setErrors] = useState({ login: '', password: '' });
   const [serverError, setServerError] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -38,6 +39,7 @@ export const LoginForm = () => {
     if (hasErrors) return;
 
     try {
+      setIsLoading(true);
       const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -57,7 +59,10 @@ export const LoginForm = () => {
 
     } catch {
       setServerError('connection error with the server');
+    } finally {
+      setIsLoading(false);
     }
+
   };
 
   return (
@@ -87,7 +92,7 @@ export const LoginForm = () => {
             inputPlaceholder="Enter your password"
           />
           {serverError && <p className="server-error">{serverError}</p>}
-          <button className="btn-login">Log in</button>
+          <button className="btn-login">{isLoading ? 'Wait...' : 'Log in'}</button>
           <p className="form-footer">
             don't have an account yet? <Link to="/register" className="btn-register">sign up</Link>
           </p>

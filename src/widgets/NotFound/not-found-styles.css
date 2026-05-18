@@ -27,8 +27,8 @@
     color: var(--accent);
     text-decoration: none;
     margin-top: 8px;
-}
-
-.not-found-link:hover {
-    color: var(--accent-hover);
+ 
+    &:hover {
+        color: var(--accent-hover);
+    }
 }
