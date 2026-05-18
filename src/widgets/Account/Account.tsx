@@ -59,7 +59,7 @@ return (
                             <span className="account-value">{userData.email}</span>
                         </div>
                         <div className="account-field">
-                            <span className="account-label">member since</span>
+                            <span className="account-label">registration date</span>
                             <span className="account-value">{formatDate(userData.created_at)}</span>
                         </div>
                     </div>
