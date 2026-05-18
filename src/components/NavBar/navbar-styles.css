@@ -79,3 +79,24 @@
 .navbar-icon-active {
     color: var(--accent);
 }
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 12px 1px;
+    }
+    
+    .navbar-inner {
+        width: 80%;
+        padding: 10px 16px;
+        border-radius: 12px;
+    }
+    
+    .navbar-right {
+        gap: 4px;
+    }
+    
+    .navbar-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
