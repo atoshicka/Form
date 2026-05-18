@@ -46,6 +46,27 @@
     color: var(--text-primary);
 }
 
+.logoutBtn {
+  width: fit-content;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(120deg, #3c3489 0%, #afa9ec 50%, #3c3489 100%);
+  background-size: 200% auto;
+  color: var(--text-primary);
+  animation: shimmer 4s linear infinite;
+  transition: opacity 0.2s ease;
+  user-select: none;
+
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
 @media (max-width: 480px) {
     .page-container {
         padding: 24px;

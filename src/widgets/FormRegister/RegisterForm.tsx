@@ -10,6 +10,7 @@ export const RegisterForm = () => {
   const [userEmailValue, setUserEmailValue] = useState<string>('');
   const [errors, setErrors] = useState({ login: '', password: '', email: '' });
   const [serverError, setServerError] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -52,6 +53,7 @@ export const RegisterForm = () => {
     if (hasErrors) return;
 
     try {
+      setIsLoading(true);
       const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -74,7 +76,10 @@ export const RegisterForm = () => {
 
     } catch {
       setServerError('connection error with the server');
+    } finally {
+      setIsLoading(false);
     }
+
   };
 
   return (
@@ -114,7 +119,7 @@ export const RegisterForm = () => {
             inputPlaceholder="yourEmail@example.com"
           />
           {serverError && <p className="server-error">{serverError}</p>}
-          <button className="btn-reg">Sign up</button>
+          <button className="btn-reg">{isLoading ? 'Wait...' : 'Sign up'}</button>
           <p className="form-footer-reg">
             already have an account? <Link to="/" className="btn-log">log in</Link>
           </p>

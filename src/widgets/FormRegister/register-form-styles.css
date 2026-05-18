@@ -53,11 +53,13 @@
 .btn-log {
     color: var(--accent);
     text-decoration: none;
+
+    &:hover {
+        color: var(--accent-hover);
+    }
 }
 
-.btn-log:hover {
-    color: var(--accent-hover);
-}
+
 
 @media (max-width: 768px) {
     .page-wrapper-reg {
