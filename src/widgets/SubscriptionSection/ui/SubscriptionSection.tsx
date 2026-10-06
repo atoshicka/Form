@@ -19,6 +19,13 @@ export function SubscriptionSection() {
                     const isProBlock = subscription.plan === 'pro';
                     const isCurrent = subscription.plan === plan;
                     const isDisabled = !isProBlock || isPro;
+                    let buttonText = subscription.buttonText;
+
+                    if (isCurrent) {
+                        buttonText = 'Current plan';
+                    } else if (isProBlock && isPro) {
+                        buttonText = 'Not active';
+                    }
 
                     return (
                         <SubscriptionBlock
@@ -26,7 +33,7 @@ export function SubscriptionSection() {
                             nameForSubscription={subscription.title}
                             priceForSubscription={subscription.price}
                             listOfSubscription={subscription.features}
-                            btnOfSubscription={isCurrent ? 'Current plan' : subscription.buttonText}
+                            btnOfSubscription={buttonText}
                             btnVariant={subscription.buttonVariant}
                             btnDisabled={isDisabled}
                             onBtnClick={isProBlock ? handleOpenModal : undefined}
