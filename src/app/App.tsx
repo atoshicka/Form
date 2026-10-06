@@ -16,16 +16,34 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
         return <Navigate to="/" replace />;
     }
 
-    return children;
+    return <>{children}</>;
 };
+
+const GuestRoute = ({ children }: { children: React.ReactNode }) => {
+    const { isAuth } = useAuth();
+
+    if (isAuth) {
+        return <Navigate to="/home" replace/>
+    }
+
+    return <>{children}</>
+}
 
 function App() {
     return (
         <>
             <Navbar/>
             <Routes>
-                <Route path="/" element={<LoginForm />} />
-                <Route path="/register" element={<RegisterForm />} />
+                <Route path="/" element={
+                    <GuestRoute>
+                        <LoginForm />
+                    </GuestRoute>
+                } />
+                <Route path="/register" element={
+                    <GuestRoute>
+                        <RegisterForm />
+                    </GuestRoute>
+                } />
                 <Route path="/home" element={
                     <ProtectedRoute>
                         <WelcomeBlock />
