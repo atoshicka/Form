@@ -1,0 +1,145 @@
+.subscription-block {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--card-bg);
+    border-radius: 30px;
+    padding: 40px;
+    overflow: hidden;
+    isolation: isolate;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 400px;
+    font-family: "Rubik", sans-serif;
+}
+
+.subscription-block::before {
+    content: '';
+    position: absolute;
+    background-color: var(--accent);
+    top: 0;
+    right: 0;
+    filter: blur(180px);
+    width: 2.5cm;
+    height: 40%;
+    z-index: -1;
+}
+
+*, html, body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.subscription-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.subscription-header h3 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.subscription-price {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--accent);
+}
+
+.subscription-price span {
+    font-size: 16px;
+    color: var(--text-secondary);
+    padding-left: 5px;
+}
+
+.subscription-feature {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+    color: var(--text-primary);
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+}
+
+.subscription-features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.subscription-btn {
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    font-family: "Rubik", sans-serif;
+    font-size: 16px;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+    border: 3px solid transparent;
+    align-self: flex-start;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+    font-weight: 400;
+}
+
+.subscription-btn:active {
+    transform: scale(0.97);
+}
+
+.subscription-btn--default {
+    background-color: transparent;
+    border: 2px solid var(--accent);
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.subscription-btn--accent {
+    border: 3px solid transparent;
+    background: linear-gradient(120deg, #3c3489 0%, #afa9ec 50%, #3c3489 100%);
+    background-size: 200% auto;
+    background-origin: border-box;
+    animation: btn-shimmer 4s linear infinite;
+    transition: opacity 0.2s ease, transform 0.1s;
+    user-select: none;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:disabled {
+        animation: none;
+        opacity: 0.6;
+        cursor: default;
+    }
+}
+
+.subscription-btn--accent:disabled:active {
+    transform: none;
+}
+
+.subscription-dot {
+    flex-shrink: 0;
+    color: var(--accent);
+}
+
+@keyframes btn-shimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .subscription-btn--accent {
+        animation: none;
+    }
+}

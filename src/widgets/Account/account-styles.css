@@ -1,0 +1,168 @@
+.account-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--page-bg);
+}
+
+.page-container {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 48px;
+    width: min(400px, 100%);
+    box-sizing: border-box;
+}
+
+.account-title {
+    color: var(--text-primary);
+    font-weight: 400;
+    margin: 0 0 32px;
+}
+
+.account-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.account-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.account-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.account-value {
+    font-size: 16px;
+    color: var(--text-primary);
+}
+
+.account-value--plan {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+}
+
+.account-error {
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--danger, #e5484d);
+}
+
+.account-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.logoutBtn {
+    width: fit-content;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(120deg, #3c3489 0%, #afa9ec 50%, #3c3489 100%);
+    background-size: 200% auto;
+    color: var(--text-primary);
+    animation: shimmer 4s linear infinite;
+    transition: opacity 0.2s ease;
+    user-select: none;
+
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+.deleteBtn,
+.cancelBtn {
+    width: fit-content;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
+    border-radius: 10px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text-primary);
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+    user-select: none;
+}
+
+.deleteBtn {
+    border: 1px solid var(--danger, #e5484d);
+    color: var(--danger, #e5484d);
+}
+
+.deleteBtn:hover {
+    background-color: var(--danger, #e5484d);
+    color: #fff;
+}
+
+.deleteBtn--solid {
+    background-color: var(--danger, #e5484d);
+    color: #fff;
+}
+
+.deleteBtn--solid:hover {
+    opacity: 0.8;
+}
+
+.cancelBtn {
+    border: 1px solid var(--input-border);
+}
+
+.cancelBtn:hover {
+    opacity: 0.6;
+}
+
+.logoutBtn:disabled,
+.deleteBtn:disabled,
+.cancelBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    animation: none;
+}
+
+.account-confirm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--card-border);
+}
+
+.account-confirm-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.account-confirm-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+@media (max-width: 480px) {
+    .page-container {
+        padding: 24px;
+        border-radius: 16px;
+        width: min(320px, 90%);
+    }
+
+    .account-title {
+        margin-bottom: 24px;
+        font-size: 20px;
+    }
+}
