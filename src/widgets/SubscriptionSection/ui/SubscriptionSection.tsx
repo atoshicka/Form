@@ -23,7 +23,7 @@ export function SubscriptionSection() {
 
                     if (isCurrent) {
                         buttonText = 'Current plan';
-                    } else if (isProBlock && isPro) {
+                    } else if (!isProBlock && isPro) {
                         buttonText = 'Not active';
                     }
 
