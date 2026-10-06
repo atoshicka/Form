@@ -29,7 +29,7 @@ const noStore = (req, res, next) => {
 
 app.use('/auth/login', loginLimiter);
 app.use('/auth', noStore, authRoutes);
-app.use('./account', noStore, accountRoutes);
+app.use('/account', noStore, accountRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
