@@ -15,12 +15,13 @@ interface UserData {
 export const Account = () => {
     const navigate = useNavigate();
     const { logout } = useAuth();
-    const { plan, isPro } = useSubscription();
+    const { plan, isPro, downgrade } = useSubscription();
 
     const [userData, setUserData] = useState<UserData | null>(null);
     const [loadError, setLoadError] = useState(false);
     const [isConfirming, setIsConfirming] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [isDowngrading, setIsDowngrading] = useState(false);
 
     useEffect(() => {
         let calcelled = false;
@@ -40,6 +41,20 @@ export const Account = () => {
     const handleLogout = () => {
         logout();
         navigate('/');
+    };
+
+    const handleDowngrade = async () => {
+        setIsDowngrading(true);
+
+        try {
+            await downgrade();
+            setIsConfirming(false);
+            toast.success('You are on the free plan now');
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : 'Something went wrong');
+        } finally {
+            setIsDowngrading(false);
+        }
     };
 
     const handleDelete = async () => {
@@ -65,6 +80,8 @@ export const Account = () => {
         });
     };
 
+    const isBusy = isDeleting || isDowngrading;
+
 return (
         <div className="account-wrapper">
             <div className="page-container">
@@ -88,13 +105,24 @@ return (
                         </div>
                         <div className="account-field">
                             <span className="account-label">plan</span>
-                            <span className="account-value account-value--plan">{plan}</span>
+                            <div className="account-plan-row">
+                                <span className="account-value account-value--plan">{plan}</span>
+                                {isPro && (
+                                    <button
+                                    onClick={handleDowngrade}
+                                    className="planBtn"
+                                    disabled={isBusy}
+                                    >
+                                        {isDowngrading ? 'switching...' : 'switch to free'}
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     </div>
                 )}
 
-                <div>
-                    <button onClick={handleLogout} className="logoutBtn">
+                <div className="account-actions">
+                    <button onClick={handleLogout} className="logoutBtn" disabled={isBusy}>
                         log out
                     </button>
 
@@ -102,6 +130,7 @@ return (
                         <button
                         onClick={() => setIsConfirming(true)}
                         className="deleteBtn"
+                        disabled={isBusy}
                         >   
                             delete account
                         </button>
@@ -117,14 +146,14 @@ return (
                             <button
                             onClick={handleDelete}
                             className="deleteBtn deleteBtn--solid"
-                            disabled={isDeleting}
+                            disabled={isBusy}
                             >
                                 {isDeleting ? 'deleting...' : 'yes, delete'}
                             </button>
                             <button
                             onClick={() => setIsConfirming(false)}
                             className="cancelBtn"
-                            disabled={isDeleting}
+                            disabled={isBusy}
                             >
                                 cancel
                             </button>

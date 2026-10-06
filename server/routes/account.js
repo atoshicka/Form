@@ -21,6 +21,24 @@ router.post('/upgrade', authMiddleware, async (req, res) => {
     }
 });
 
+router.post('/downgrade', authMiddleware, async (req, res) => {
+    try {
+        const result = await pool.query(
+            "UPDATE users SET plan = 'free' WHERE id = $1 RETURNING plan",
+            [req.user.id]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: 'user not found' });
+        }
+
+        res.json({ plan: result.rows[0].plan });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'server error' });
+    }
+});
+
 router.delete('/', authMiddleware, async (req, res) => {
     try {
         const result = await pool.query(

@@ -28,10 +28,11 @@ async function request<T>(path: string, method: 'GET' | 'POST' | 'DELETE'): Prom
         },
     });
 
-    const data = await response.json().catch(() => ({}));
+    const data = await response.json().catch(() => null);
 
     if (!response.ok) {
-        throw new ApiError(data.message ?? 'request failder', response.status);
+        const message = data?.message ?? `Request failed: ${method} ${path} (${response.status})`
+        throw new ApiError(message, response.status);
     }
 
     return data as T;
@@ -43,6 +44,10 @@ export function fetchMe(): Promise<UserData> {
 
 export async function upgradeToPro(): Promise<void> {
     await request('/account/upgrade', 'POST');
+}
+
+export async function downgradeToFree(): Promise<void> {
+    await request('/account/downgrade', 'POST');
 }
 
 export async function deleteAccount(): Promise<void> {

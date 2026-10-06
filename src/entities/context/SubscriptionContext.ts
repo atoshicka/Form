@@ -4,7 +4,9 @@ import type { Plan } from '../../widgets/SubscriptionSection/model/data';
 export interface SubscriptionContextValue {
     plan: Plan;
     isPro: boolean;
-    upgrade: () => void;
+    login: string | null;
+    upgrade: () => Promise<void>;
+    downgrade: () => Promise<void>;
 }
 
 export const SubscriptionContext = createContext<SubscriptionContextValue | undefined>(undefined);

@@ -3,12 +3,13 @@ import type { ReactNode } from 'react';
 import type { Plan } from '../../widgets/SubscriptionSection/model/data';
 import { SubscriptionContext } from './SubscriptionContext';
 import { useAuth } from '../../hooks/useAuth';
-import { ApiError, fetchMe, upgradeToPro } from '../../shared/api/account-api';
+import { ApiError, downgradeToFree, fetchMe, upgradeToPro } from '../../shared/api/account-api';
 import toast from 'react-hot-toast';
 
 export function SubscriptionProvider({ children }: { children: ReactNode }) {
     const { isAuth, logout } = useAuth();
     const [plan, setPlan] = useState<Plan>('free');
+    const [login, setLogin] = useState<string | null>(null);
 
     const logoutRef = useRef(logout);
 
@@ -23,7 +24,10 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
 
         fetchMe()
             .then((user) => {
-                if (!cancelled) setPlan(user.plan);
+                if (cancelled) return;
+
+                setPlan(user.plan === 'pro' ? 'pro' : 'free');
+                setLogin(user.login ?? null);
             })
             .catch((error: unknown) => {
                 if (cancelled) return;
@@ -38,6 +42,7 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
         return () => {
             cancelled = true;
             setPlan('free');
+            setLogin(null);
         };
     }, [isAuth]);
 
@@ -46,9 +51,14 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
        setPlan('pro');
     }, []);
 
+    const downgrade = useCallback(async () => {
+        await downgradeToFree();
+        setPlan('free');
+    }, []);
+
     const value = useMemo(
-        () => ({ plan, isPro: plan === 'pro', upgrade }),
-        [plan, upgrade]
+        () => ({ plan, isPro: plan === 'pro', login, upgrade, downgrade }),
+        [plan, login, upgrade, downgrade]
     );
 
     return (

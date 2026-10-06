@@ -96,7 +96,7 @@ export function UpgradeModal({ onUpgrade, onClose }: UpgradeModalProps) {
                 className="upgrade-text" 
                 aria-live="polite"
                 >
-                    {isLoading ? 'Обрабатываем вашу операцию...' : 'Успешно!' }
+                    {isLoading ? 'We are processing your transaction...' : 'Successful!' }
                 </p>
             </div>
         </div>,
