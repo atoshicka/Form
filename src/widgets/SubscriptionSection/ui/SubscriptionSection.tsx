@@ -4,13 +4,19 @@ import { SubscriptionBlock } from '../../../shared/ui/subscription-block/Subscri
 import { subscriptionData } from '../model/data';
 import './subscription-section-styles.css';
 import { UpgradeModal } from '../../Modal/UpgradeModal';
+import { PaymentModal } from '../../Modal/PaymentModal/PaymentModal';
+
+type Step = 'idle' | 'payment' | 'processing';
 
 export function SubscriptionSection() {
     const { plan, isPro, upgrade } = useSubscription();
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [step, setStep] = useState<Step>('idle');
 
-    const handleOpenModal = useCallback(() => setIsModalOpen(true), []);
-    const handleCloseModal = useCallback(() => setIsModalOpen(false), []);
+    const proPrice = subscriptionData.find((item) => item.plan === 'pro')?.price ?? '';
+
+    const handleOpenPayment = useCallback(() => setStep('payment'), []);
+    const handlePay = useCallback(() => setStep('processing'), []);
+    const handleCloseModal = useCallback(() => setStep('idle'), []);
 
     return (
         <section className="subscription-section">
@@ -36,14 +42,22 @@ export function SubscriptionSection() {
                             btnOfSubscription={buttonText}
                             btnVariant={subscription.buttonVariant}
                             btnDisabled={isDisabled}
-                            onBtnClick={isProBlock ? handleOpenModal : undefined}
+                            onBtnClick={isProBlock ? handleOpenPayment : undefined}
                         />
                     );
                 })}
             </div>
 
-            {isModalOpen && (
-                <UpgradeModal onUpgrade={upgrade} onClose={handleCloseModal} />
+            {step === 'payment' && (
+                <PaymentModal
+                    amount={proPrice}
+                    onPay={handlePay}
+                    onClose={handleCloseModal}
+                />
+            )}
+
+            {step === 'processing' && (
+                <UpgradeModal onUpgrade={upgrade} onClose={handleCloseModal}/>
             )}
         </section>
     )
