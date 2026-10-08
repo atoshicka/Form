@@ -5,9 +5,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     animation: upgrade-overlay-in 0.3s ease forwards;
 }
 
@@ -22,9 +22,11 @@
     gap: 24px;
     width: min(360px, calc(100% - 32px));
     padding: 48px;
-    background: var(--card-bg);
+    background-color: var(--page-bg);
+    background-image: linear-gradient(var(--card-bg), var(--card-bg));
     border: 1px solid var(--card-border);
     border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
     font-family: "Rubik", sans-serif;
     animation: upgrade-modal-in 0.35s ease forwards;
 }

@@ -6,9 +6,9 @@
     align-items: center;
     justify-content: center;
     padding: 16px;
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(9px);
-    -webkit-backdrop-filter: blur(9px);
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     animation: payment-overlay-in 0.25s ease forwards;
 }
 
@@ -25,9 +25,11 @@
     max-height: 100%;
     overflow-y: auto;
     padding: 36px;
-    background: var(--card-bg);
+    background-color: var(--page-bg);
+    background-image: linear-gradient(var(--card-bg), var(--card-bg));
     border: 1px solid var(--card-border);
     border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
     font-family: "Rubik", sans-serif;
     box-sizing: border-box;
     animation: payment-modal-in 0.3s ease forwards;
@@ -53,11 +55,11 @@
     color: var(--text-secondary);
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
+}
 
-    &:hover {
-        background-color: var(--input-bg);
-        color: var(--text-primary);
-    }
+.payment-close:hover {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
 }
 
 .payment-title {
@@ -69,9 +71,10 @@
 
 .payment-demo {
     display: flex;
-    align-items: flex-end;
-    gap: 10px;
+    align-items: flex-start;
     justify-content: center;
+    gap: 10px;
+    padding: 12px 14px;
     opacity: 0.6;
 }
 
@@ -139,11 +142,6 @@
     box-sizing: border-box;
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
-
-    &:focus {
-        border-color: var(--accent);
-        box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent);
-    }
 }
 
 .payment-input--icon {
@@ -153,6 +151,11 @@
 .payment-input::placeholder {
     color: var(--text-secondary);
     opacity: 0.6;
+}
+
+.payment-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 .payment-input--error {
@@ -185,14 +188,14 @@
     animation: payment-shimmer 4s linear infinite;
     transition: opacity 0.2s ease, transform 0.1s ease;
     user-select: none;
+}
 
-    &:hover {
-        opacity: 0.8;
-    }
+.payment-submit:hover {
+    opacity: 0.8;
+}
 
-    &:active {
-        transform: scale(0.98);
-    }
+.payment-submit:active {
+    transform: scale(0.98);
 }
 
 .payment-hint {

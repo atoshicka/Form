@@ -6,6 +6,7 @@ export interface UserData {
     email: string;
     created_at: string;
     plan: Plan;
+    avatar: string | null;
 }
 
 export class ApiError extends Error {
@@ -20,12 +21,24 @@ export class ApiError extends Error {
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
 const TOKEN_KEY = 'token';
 
-async function request<T>(path: string, method: 'GET' | 'POST' | 'DELETE'): Promise<T> {
+async function request<T>(
+    path: string, 
+    method: 'GET' | 'POST' | 'DELETE',
+    body?: unknown,
+    ): Promise<T> {
+    const headers: Record<string, string> = {
+        Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY) ?? ''}`,
+    };
+
+    if (body !== undefined) {
+        headers['Content-Type'] = 'application/json';
+    }
+
     const response = await fetch(`${API_URL}${path}`, {
         method,
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem(TOKEN_KEY) ?? ''}`,
-        },
+        cache: 'no-store',
+        headers,
+        body: body !== undefined ? JSON.stringify(body) : undefined,
     });
 
     const data = await response.json().catch(() => null);
@@ -48,6 +61,15 @@ export async function upgradeToPro(): Promise<void> {
 
 export async function downgradeToFree(): Promise<void> {
     await request('/account/downgrade', 'POST');
+}
+
+export async function uploadAvatar(avatar: string): Promise<string> {
+    const data = await request<{avatar: string}>('/account/avatar', 'POST', {avatar});
+    return data.avatar;
+}
+
+export async function removeAvatar(): Promise<void> {
+    await request('/account/avatar', 'DELETE');
 }
 
 export async function deleteAccount(): Promise<void> {

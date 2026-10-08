@@ -20,7 +20,7 @@ const loginLimiter = rateLimit({
 app.set('etag', false);
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '400kb' }));
 
 const noStore = (req, res, next) => {
     res.set('Cache-Control', 'no-store');

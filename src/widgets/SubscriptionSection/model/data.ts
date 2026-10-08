@@ -31,7 +31,7 @@ export const subscriptionData: SubscriptionItem[] = [
         title: 'premium', 
         price: '$20', 
         features: [
-            'You are welcomed on the main page with your name.', 
+            'You are greeted with your login and wished a good time of day.', 
             'You can see the date of your registration.', 
             'You can delete your account.'
         ],

@@ -7,6 +7,7 @@
 }
 
 .page-container {
+    position: relative;
     background: var(--card-bg);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -15,6 +16,111 @@
     padding: 48px;
     width: min(400px, 100%);
     box-sizing: border-box;
+}
+
+.account-avatar {
+    position: absolute;
+    top: -28px;
+    right: -20px;
+    width: 88px;
+    height: 88px;
+}
+
+.account-avatar-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    border: 3px solid var(--card-border);
+    border-radius: 50%;
+    background-color: var(--page-bg);
+    background-image: linear-gradient(var(--card-bg), var(--card-bg));
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.1s ease;
+}
+
+.account-avatar-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+}
+
+.account-avatar-btn:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+.account-avatar-btn:disabled {
+    cursor: not-allowed;
+}
+
+.account-avatar-btn--busy .account-avatar-img,
+.account-avatar-btn--busy .account-avatar-placeholder {
+    opacity: 0.4;
+}
+
+.account-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.2s ease;
+}
+
+.account-avatar-placeholder {
+    color: var(--text-secondary);
+    transition: opacity 0.2s ease;
+}
+
+.account-avatar-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.account-avatar-btn:hover:not(:disabled) .account-avatar-overlay,
+.account-avatar-btn:focus-visible .account-avatar-overlay {
+    opacity: 1;
+}
+
+.account-avatar-remove {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    background-color: var(--page-bg);
+    color: var(--danger, #e5484d);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.account-avatar-remove:hover:not(:disabled) {
+    background-color: var(--danger, #e5484d);
+    color: #fff;
+}
+
+.account-avatar-remove:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.account-avatar-input {
+    display: none;
 }
 
 .account-title {
@@ -50,7 +156,6 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--accent);
-    font-weight: 600;
 }
 
 .account-plan-row {
@@ -112,7 +217,7 @@
 .planBtn {
     padding: 4px 12px;
     font-size: 12px;
-    border: 2px solid var(--accent);
+    border: 1px solid var(--accent);
 }
 
 .planBtn:hover {
@@ -120,7 +225,7 @@
 }
 
 .deleteBtn {
-    border: 2px solid var(--danger, #e5484d);
+    border: 1px solid var(--danger, #e5484d);
     color: var(--danger, #e5484d);
 }
 
@@ -184,5 +289,13 @@
     .account-title {
         margin-bottom: 24px;
         font-size: 20px;
+        padding-right: 56px;
+    }
+
+    .account-avatar {
+        top: -24px;
+        right: -8px;
+        width: 72px;
+        height: 72px;
     }
 }
