@@ -4,6 +4,6 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    plan VARCHAR(10) NOT NULL DEFAULT 'free'CHECK (plan IN ('free', 'pro')),
+    plan VARCHAR(10) NOT NULL DEFAULT 'free' CHECK (plan IN ('free', 'pro')),
     avatar TEXT
-)
+);
